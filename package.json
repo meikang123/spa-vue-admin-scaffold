@@ -1,6 +1,6 @@
 {
-  "name": "heihei-admin",
-  "version": "0.1.0",
+  "name": "admin",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "giant-cli-service serve",
