@@ -42,7 +42,6 @@
     "babel-plugin-jsx-v-model": "^2.0.3",
     "babel-preset-vue-app": "^2.0.0",
     "cache-loader": "^4.1.0",
-    "giant-tools": "^0.9.8",
     "less-loader": "^6.1.1",
     "svg-sprite-loader": "^4.2.7",
     "ts-loader": "7.0.5",
