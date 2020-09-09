@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "giant-cli-service serve",
+    "dev": "giant-cli-service serve --port 9301",
     "build": "giant-cli-service build",
     "build:test": "giant-cli-service build --mode st",
     "release:test": "giant release test",

@@ -2,10 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  devServer: {
-    port: 9111
-  },
-
   configureWebpack: {
     devtool: "source-map",
     plugins: [
