@@ -27,7 +27,7 @@ export default {
     };
   },
   created() {
-    const req = require.context('../../icons/svg', false, /\.svg$/);
+    const req = require.context('@/icons/svg', false, /\.svg$/);
     const re = /\.\/(.*)\.svg/;
     this.iconList = req.keys().map(i => i.match(re)[1]);
   }
