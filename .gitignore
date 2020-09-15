@@ -4,6 +4,7 @@ node_modules
 package-lock.json
 yarn.lock
 /src/framework
+/public/static/framework
 
 # local env files
 .env.local
