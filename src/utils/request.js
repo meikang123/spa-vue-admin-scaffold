@@ -57,7 +57,9 @@ service.interceptors.response.use(response => {
     store.dispatch('user/resetToken').then(() => {
       window.location.reload();
     });
+    return Promise.reject(error);
   }
+  
   Message({
     showClose: true,
     message: '服务器异常',
