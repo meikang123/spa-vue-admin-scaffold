@@ -2,7 +2,7 @@ import NProgress from 'nprogress';
 import { Settings } from '@/config';
 import { Browser } from '@framework/utils';
 import store from './store';
-import router, { authRoutes } from './router';
+import router, { getAuthRoutes } from './router';
 /* 页面进度条 * */
 import 'nprogress/nprogress.css';
 
@@ -50,7 +50,7 @@ router.beforeEach(async (to, from, next) => {
           const { roles } = await store.dispatch('user/getRoles', JSON.parse(token));
           if (roles) {
             // 添加路由
-            const addRoutes = await store.dispatch('user/generateRoutes', authRoutes);
+            const addRoutes = await store.dispatch('user/generateRoutes', getAuthRoutes());
             router.addRoutes(addRoutes);
             next({ ...to, replace: true });
           } else {

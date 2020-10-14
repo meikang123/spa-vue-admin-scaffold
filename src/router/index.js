@@ -7,13 +7,9 @@ import { Transform } from '@framework/utils';
  * */
 import Layout from '@/layout';
 
-/**
- * @description 动态引入路由模块, 根据模块内第一个路由meta{position:1}中的position进行菜单顺序调整
- * position 越大位置越靠后
- */
-const routeFiles = require.context('./modules', true, /\.js$/);
-const configRoutes = Transform.configRoutesToRoutes(routeFiles);
-
+/*
+* 处理相同路由push错误的修复
+* */
 const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location, onResolve, onReject) {
   if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject);
@@ -54,22 +50,31 @@ export const defaultRoutes = [
     }
   }];
 
-export const authRoutes = [{
-  path: '/',
-  redirect: '/index',
-  component: Layout,
-  children: [{
-    path: 'index',
-    name: 'default',
-    component: () => import(/* webpackChunkName: 'default' */ '@/views/default/index/index'),
-    hidden: true,
-    meta: { affix: true, title: 'Welcome' }
-  }]
-}, {
-  path: '*',
-  redirect: '/404',
-  hidden: true
-}].concat(...configRoutes);
+export const getAuthRoutes = () => {
+  /*
+  * @description 动态引入路由模块, 根据模块内第一个路由meta{position:1}中的position进行菜单顺序调整
+  * position 越大位置越靠后
+  * */
+  const routeFiles = require.context('./modules', true, /\.js$/);
+  const configRoutes = Transform.configRoutesToRoutes(routeFiles);
+
+  return [{
+    path: '/',
+    redirect: '/index',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: 'default',
+      component: () => import(/* webpackChunkName: 'default' */ '@/views/default/index/index'),
+      hidden: true,
+      meta: { affix: true, title: 'Welcome' }
+    }]
+  }, {
+    path: '*',
+    redirect: '/404',
+    hidden: true
+  }].concat(...configRoutes);
+};
 
 
 const router = new VueRouter({
